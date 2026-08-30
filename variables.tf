@@ -8,6 +8,7 @@ variable "lambda_functions" {
     handler_file = string
   }))
   default = {
-    "first-lambda-function" = { handler_file = "index" }
+    "first-lambda-function"  = { handler_file = "index" }
+    "second-lambda-function" = { handler_file = "second_function" }
   }
 }
