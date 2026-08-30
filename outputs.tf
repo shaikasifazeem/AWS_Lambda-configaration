@@ -1,9 +1,9 @@
-output "lambda_arn" {
-  value       = aws_lambda_function.lambda.arn
-  description = "The ARN of the Lambda function"
+output "lambda_arns" {
+  value       = { for k, v in aws_lambda_function.lambdas : k => v.arn }
+  description = "A map of Lambda function names to their ARNs"
 }
 
-output "lambda_name" {
-  value       = aws_lambda_function.lambda.function_name
-  description = "The name of the Lambda function"
+output "lambda_names" {
+  value       = [for k, v in aws_lambda_function.lambdas : v.function_name]
+  description = "A list of all deployed Lambda function names"
 }
