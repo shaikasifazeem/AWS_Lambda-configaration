@@ -6,3 +6,4 @@ variable "aws_region" {
 variable "function_name" {
   type    = string
   default = "my-new-lambda-function" 
+}
