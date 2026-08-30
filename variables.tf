@@ -9,5 +9,6 @@ variable "lambda_functions" {
   }))
   default = {
     "first-lambda-function" = { handler_file = "index" }
+    "second-lambda-function" = { handler_file = "second_function" }
   }
 }
