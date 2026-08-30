@@ -66,6 +66,13 @@ resource "aws_cloudwatch_metric_alarm" "first_lambda_throttles" {
   threshold           = 0
   alarm_description   = "Alarm triggered when first-lambda-function experiences throttles"
   treat_missing_data  = "notBreaching"
+
+  dimensions = {
+    FunctionName = aws_lambda_function.lambdas["first-lambda-function"].function_name
+  }
+}
+
+# CloudWatch Metric Alarms for Lambda Invocations (Both functions)
 resource "aws_cloudwatch_metric_alarm" "lambda_invocations" {
   for_each            = var.lambda_functions
   alarm_name          = "${each.key}-invocations-alarm"
@@ -73,13 +80,13 @@ resource "aws_cloudwatch_metric_alarm" "lambda_invocations" {
   evaluation_periods  = 1
   metric_name         = "Invocations"
   namespace           = "AWS/Lambda"
-  period              = 300 # 5 minutes evaluation window
+  period              = 300
   statistic           = "Sum"
-  threshold           = 100 # Change this value to your desired invocation limit
-  alarm_description   = "Triggered when invocations exceed the threshold for ${each.key}"
+  threshold           = 100
+  alarm_description   = "Triggered when invocations exceed 100 in 5 minutes for ${each.key}"
   treat_missing_data  = "notBreaching"
 
   dimensions = {
-    FunctionName = aws_lambda_function.lambdas["first-lambda-function"].function_name
+    FunctionName = aws_lambda_function.lambdas[each.key].function_name
   }
 }
