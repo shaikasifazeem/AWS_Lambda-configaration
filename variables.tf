@@ -1,6 +1,6 @@
 variable "aws_region" {
   type    = string
-  default = "ap-south-1"  
+  default = "ap-south-1"
 }
 
 variable "lambda_functions" {
@@ -8,7 +8,6 @@ variable "lambda_functions" {
     handler_file = string
   }))
   default = {
-    "first-lambda-function"  = { handler_file = "index" }
-    "second-lambda-function" = { handler_file = "second_function" }
+    "first-lambda-function" = { handler_file = "index" }
   }
 }
