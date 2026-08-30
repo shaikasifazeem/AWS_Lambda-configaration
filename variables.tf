@@ -3,7 +3,12 @@ variable "aws_region" {
   default = "ap-south-1"  
 }
 
-variable "function_name" {
-  type    = string
-  default = "my-new-lambda-function" 
+variable "lambda_functions" {
+  type = map(object({
+    handler_file = string
+  }))
+  default = {
+    "first-lambda-function"  = { handler_file = "index" }
+    "second-lambda-function" = { handler_file = "second_function" }
+  }
 }
