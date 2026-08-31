@@ -1,4 +1,4 @@
-# CloudWatch Metric Alarms for Lambda Invocations (Both functions)
+# CloudWatch Metric Alarms for Lambda Invocations (Both Functions)
 resource "aws_cloudwatch_metric_alarm" "lambda_invocations" {
   for_each            = var.lambda_functions
   alarm_name          = "P1-[Formation]-[Lambda]-${each.key}-Invocations"
